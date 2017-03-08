@@ -12,9 +12,8 @@ public class App
     {
         System.out.println( "Hello Siema!" );
         myFunction();
-       
+
     }
-    
     public static void myFunction() {
     	System.out.print("Jaro jest debeściak !!!");
     }
