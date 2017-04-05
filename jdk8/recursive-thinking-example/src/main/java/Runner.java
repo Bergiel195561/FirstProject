@@ -5,7 +5,7 @@ public class Runner {
 
     public static void main(String[] args) {
 
-        final String test = Library.subsequences("test");
+        final String test = Library.subsequnce("test");
         System.out.print(test);
     }
 }

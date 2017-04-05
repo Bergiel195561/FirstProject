@@ -25,4 +25,21 @@ public class Library {
         }
 
     }
+
+    public static String subsequnce(String word){
+        return subsequencesAfter("",word);
+    }
+
+    private static String subsequencesAfter(String s, String word){
+        if(word.isEmpty()){
+            // base case
+            return s;
+        }
+        else{
+            //recursive step
+            return  subsequencesAfter(s, word.substring(1)) +
+                    "," +
+                    subsequencesAfter(s+ word.charAt(0), word.substring(1));
+        }
+    }
 }
