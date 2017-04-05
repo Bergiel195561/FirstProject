@@ -16,7 +16,7 @@ public class App
     }
     
     private static void printMaster(){
-    	System.out.println("Szabat jest debeúciak");
+    	System.out.println("Szabat jest debe≈õciak");
         myFunction();
 
     }
