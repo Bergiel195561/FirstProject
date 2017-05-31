@@ -29,5 +29,44 @@ public class S03_Map extends AbstractFuturesTest {
 		log.debug("Length: {}", length);
 	}
 
+	@Test
+	public void callBackHell() throws Exception {
+		final CompletableFuture<Document> java =
+				CompletableFuture.supplyAsync(() ->
+								client.mostRecentQuestionsAbout("java"),
+						executorService
+				);
+		java.thenAccept(document -> log.debug("Downloaded: ()", document));
+	}
+
+	public void thenApply() throws Exception {
+		final CompletableFuture<Document> java =
+				CompletableFuture.supplyAsync(() ->
+								client.mostRecentQuestionsAbout("java"),
+						executorService
+				);
+
+		CompletableFuture<Void> titleElement = java.thenAccept((Document doc) ->
+				doc.select("a.question-hyperlink").get(0));
+
+//		CompletableFuture<String> titleText = titleElement.thenApply(Element::text);
+//		CompletableFuture<Integer> length = titleText.thenApply(String::length);
+	}
+
+	public void thenApplyChained() throws Exception {
+		final CompletableFuture<Document> java =
+				CompletableFuture.supplyAsync(() ->
+								client.mostRecentQuestionsAbout("java"),
+						executorService
+				);
+
+		CompletableFuture<Integer> length = java.
+				thenApply(doc -> doc.select("ValidCSSHEREBLABLA").get(0)).
+				thenApply(Element::text).
+				thenApply(String::length);
+
+		log.debug("Got element length: ()", length.get());
+	}
+
 }
 
